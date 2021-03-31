@@ -146,3 +146,22 @@
 .btn-danger{
     border: 30px !important;
 }
+.nav-link{
+    background-color: transparent;
+    color: white;
+    opacity: 0.6;
+}
+.nav-link:hover{
+    color: white;
+    opacity: 1;
+    
+}
+.nav-link:active{
+    opacity: 1;
+}
+#v-pills-home-tab{
+    opacity: 1;
+}
+#hp1{
+    background-color: white;
+}
