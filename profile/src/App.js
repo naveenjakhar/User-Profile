@@ -9,7 +9,7 @@ function App() {
       <>
      <Switch>
         <Route exact path="/" component={Select}/>
-        <Route exact path="/Profile/:userid" component={Profile}/>
+        <Route exact path="/:userid" component={Profile}/>
         
       </Switch>
       </>

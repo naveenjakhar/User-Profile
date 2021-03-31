@@ -66,3 +66,47 @@
       text-decoration: none;
       
   }
+  #Navbar{
+      height: 95vh;
+      background-color: #5840c8;
+      border-radius: 30px;
+
+  }
+  #Head1{
+      background-color: white;
+      border-bottom: 1px solid #e7e7e7;
+      
+      height: 10vh;
+  }
+  #Left1{
+    background-color: white;
+    
+    border-right: 1px solid #e7e7e7;
+    height: 80vh;
+}
+#right1{
+    background-color: white;
+    
+  
+    height: 80vh;
+}
+#Profile_txt{
+    color: #545454;
+    font-size: 15px;
+    font-weight: bold;
+}
+#AVT{
+    border-radius: 20px;
+}
+#AVT1{
+    border-radius: 100px;
+}
+#username{
+    color: #545454;
+    font-size: 15px;
+    font-weight: bold;
+    opacity: 0.5;
+}
+#det{
+    background-color:  #e7e7e7;
+}

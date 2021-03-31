@@ -30,7 +30,7 @@ const ApiCall = () => {
            <ul class="list-group list-group-flush">
            {items.map(item =>
                      (
-                         <li class="list-group-item"> <Link id="Link" to={`/Profile/${item.id}`}> <img id="image" src={item.profilepicture} width="50px" height="50px" alt="image"></img><span className="ml-3">{item.name}</span></Link> </li> ))}
+                         <li class="list-group-item"> <Link id="Link" to={`/${item.id}`}> <img id="image" src={item.profilepicture} width="50px" height="50px" alt="image"></img><span className="ml-3">{item.name}</span></Link> </li> ))}
   
 </ul> 
         </div>
