@@ -101,6 +101,9 @@
 #AVT1{
     border-radius: 100px;
 }
+#AVT3{
+    border-radius: 40px;
+}
 #username{
     color: #545454;
     font-size: 15px;
@@ -109,4 +112,37 @@
 }
 #det{
     background-color:  #e7e7e7;
+}
+#map{
+    border-radius: 10px;
+}
+#toggle{
+    width: 200px;
+    height: 50px;
+    background-color: red;
+    display: none;
+}
+#dropdownlist{
+    width: 350px !important; 
+}
+#profi{
+    color: #545454;
+    font-size: 13px;
+    font-weight: bold;
+}
+#emi{
+    color: #545454;
+    font-size: 13px;
+    font-weight: bold;
+    opacity: 0.5;
+}
+#hori{
+    background-color:  #e7e7e7;
+    width: 150px;
+}
+.dropdown-menu{
+    border: none;
+}
+.btn-danger{
+    border: 30px !important;
 }
