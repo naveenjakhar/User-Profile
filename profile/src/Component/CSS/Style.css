@@ -1,0 +1,64 @@
+.custom-shape-divider-top-1617168560 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1617168560 svg {
+    position: relative;
+    display: block;
+    width: calc(127% + 1.3px);
+    height: 460px;
+}
+
+.custom-shape-divider-top-1617168560 .shape-fill {
+    fill: #5642C8;
+}
+#Box{
+    height: 100px;
+    background-color: #f6f6f6;
+    border: 1px solid #f6f6f6;
+    border-radius: 25px 25px 0px 0px;
+    width: 100%;
+}
+#Box1{
+    height: 450px;
+    overflow: scroll;
+    background-color: white;
+    border: 1px solid #f6f6f6;
+    border-radius:  0px 0px 25px 25px;
+    width: 100%;
+}
+#header_text{
+    color: #595959;
+    font-size: 20px;
+    font-weight: bolder;
+}
+::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+    
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d8d8d8; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background:#d8d8d8; 
+  }
+  #image{
+      border-radius: 25px;
+  }
