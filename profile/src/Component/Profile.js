@@ -1,7 +1,8 @@
-import React , { useState, useEffect }  from 'react'
-import { Link } from 'react-router-dom';
+import React , { useState, useEffect } from 'react'
+import {useParams} from 'react-router-dom';
 
-const ApiCall = () => {
+const Profile = () => {
+    const { userid }= useParams();
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
@@ -12,7 +13,7 @@ const ApiCall = () => {
                 (result) => {
                     setIsLoaded(true);
                     setItems(result.users);
-                    console.log("result", result.users)
+                    
                 },
                 (error) => {
                     setIsLoaded(true);
@@ -26,15 +27,16 @@ const ApiCall = () => {
         return <div>Loading...</div>;
     } else {
     return (
-        <div className="ml-2 mr-2">
-           <ul class="list-group list-group-flush">
-           {items.map(item =>
-                     (
-                         <li class="list-group-item"> <Link id="Link" to={`/Profile/${item.id}`}> <img id="image" src={item.profilepicture} width="50px" height="50px" alt="image"></img><span className="ml-3">{item.name}</span></Link> </li> ))}
-  
-</ul> 
-        </div>
+        <>
+        
+        {
+            items.filter((card)=> card.id == userid).map((card)=>(
+                    <h1>{card.name}</h1>
+            ))
+        }
+         
+        </>
     )
 }
 }
-export default ApiCall
+export default Profile
