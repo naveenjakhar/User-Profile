@@ -18,7 +18,7 @@ const Select = () => {
 
 <div className="container">
     <div className="row pt-5 ">
-        <div id="Fullbox" className="col-6 mt-5 offset-3  ">
+        <div id="Fullbox" className="col-md-6 col-12 mt-5 offset-md-3  ">
             <div id="Box" className="justify-content-center text-center pt-4 shadow-lg">
             <p id="header_text" className="my-auto"> Select an Account </p>
             </div>

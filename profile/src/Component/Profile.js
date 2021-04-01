@@ -79,7 +79,7 @@ const Profile = () => {
                     items.filter((card) => card.id == userid).map((card) => (
                         <div className="container-fluid">
                             <div className="row ml-2 mr-3">
-                                <div id="Navbar" className="col-2 d-flex align-items-center mt-3">
+                                <div id="Navbar" className="col-md-2 col-12 d-flex align-items-center mt-3">
                                     <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
 
@@ -88,7 +88,7 @@ const Profile = () => {
                                         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">ToDo</a>
                                     </div>
                                 </div>
-                                <div className="col-9  mt-3 ml-4">
+                                <div className="col-md-9 col-12  mt-3 ml-4">
                                     <div id="Head1" className="row mt-3">
 
                                         <div className="col-6 d-flex align-items-center">
@@ -120,7 +120,7 @@ const Profile = () => {
                                         <div class="tab-content" id="v-pills-tabContent">
                                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                                 <div className="row mt-3">
-                                                    <div id="Left1" className="col-4">
+                                                    <div id="Left1" className="col-md-4 col-12">
                                                         <div class="justify-content-center text-center">
                                                             <img className="mr-2 mb-3" id="AVT1" src={card.profilepicture} width="160px" height="160px"></img>
                                                             <p id="Profile_txt">{card.name}</p>
@@ -147,7 +147,7 @@ const Profile = () => {
                                                         </div>
 
                                                     </div>
-                                                    <div id="right1" className="col-8">
+                                                    <div id="right1" className="col-md-8 col-12">
                                                         <div className="row" >
                                                             <div className="col">
                                                                 <div class="ml-2"><span id="username">Address :</span></div>
@@ -160,7 +160,7 @@ const Profile = () => {
                                                             </div>
                                                         </div>
                                                         <div className="row" >
-                                                            <div className="col ml-3">
+                                                            <div className="col ml-3 d-none d-md-block">
                                                                 <img id="map" src={"https://www.thestatesman.com/wp-content/uploads/2020/04/googl_ED.jpg"} width="650px" height="250px" alt="maps"></img>
                                                             </div>
                                                         </div>
