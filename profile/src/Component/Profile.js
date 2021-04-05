@@ -2,115 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import $ from "jquery";
+import Tog from './tog';
 const Profile = () => {
-    $(function () {
-        $(".c_h").click(function (e) {
-            if ($(".chat_container").is(":visible")) {
-                $(".c_h .right_c .mini").text("+")
-            } else {
-                $(".c_h .right_c .mini").text("-")
-            }
-            $(".chat_container").slideToggle("slow");
-            return false
-        });
-    });
-    $(function () {
-        var INDEX = 0;
-        $("#chat-submit").click(function (e) {
-            e.preventDefault();
-            var msg = $("#chat-input").val();
-            if (msg.trim() == '') {
-                return false;
-            }
-            generate_message(msg, 'self');
-            var buttons = [
-                {
-                    name: 'Existing User',
-                    value: 'existing'
-                },
-                {
-                    name: 'New User',
-                    value: 'new'
-                }
-            ];
-            setTimeout(function () {
-                generate_message(msg, 'user');
-            }, 1000)
-
-        })
-
-        function generate_message(msg, type) {
-            INDEX++;
-            var str = "";
-            str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + "\">";
-            str += "          <div class=\"cm-msg-text\">";
-            str += msg;
-            str += "          <\/div>";
-            str += "        <\/div>";
-            $(".chat-logs").append(str);
-            $("#cm-msg-" + INDEX).hide().fadeIn(300);
-            if (type == 'self') {
-                $("#chat-input").val('');
-            }
-            $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
-        }
-
-        function generate_button_message(msg, buttons) {
-            /* Buttons should be object array 
-              [
-                {
-                  name: 'Existing User',
-                  value: 'existing'
-                },
-                {
-                  name: 'New User',
-                  value: 'new'
-                }
-              ]
-            */
-            INDEX++;
-            var btn_obj = buttons.map(function (button) {
-                return "              <li class=\"button\"><a href=\"javascript:;\" class=\"btn btn-primary chat-btn\" chat-value=\"" + button.value + "\">" + button.name + "<\/a><\/li>";
-            }).join('');
-            var str = "";
-            str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg user\">";
-            str += "          <div class=\"cm-msg-text\">";
-            str += msg;
-            str += "          <\/div>";
-            str += "          <div class=\"cm-msg-button\">";
-            str += "            <ul>";
-            str += btn_obj;
-            str += "            <\/ul>";
-            str += "          <\/div>";
-            str += "        <\/div>";
-            $(".chat-logs").append(str);
-            $("#cm-msg-" + INDEX).hide().fadeIn(300);
-            $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
-            $("#chat-input").attr("disabled", true);
-        }
-
-        $(document).delegate(".chat-btn", "click", function () {
-            var value = $(this).attr("chat-value");
-            var name = $(this).html();
-            $("#chat-input").attr("disabled", false);
-            generate_message(name, 'self');
-        })
-
-        $("#naaa").click(function () {
-           
-            $(".chat-box").toggle('scale');
-        })
-
-        $(".chat-box-toggle").click(function () {
-           
-            $(".chat-box").toggle('scale');
-        })
-
-    })
+   
     const { userid } = useParams();
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+    const [items1, setItems1] = useState([]);
+    const [items11, setItems11] = useState(userid);
+
+
     useEffect(() => {
         fetch("https://panorbit.in/api/users.json")
             .then(res => res.json())
@@ -118,6 +20,8 @@ const Profile = () => {
                 (result) => {
                     setIsLoaded(true);
                     setItems(result.users);
+                    setItems1(result.users);
+
 
                 },
                 (error) => {
@@ -164,13 +68,16 @@ const Profile = () => {
                                                     <img className="mr-2" id="AVT3" src={card.profilepicture} width="80px" height="80px" alt="image"></img>
                                                     <p className="mt-2" id="profi">{card.name}</p>
                                                     <p className="mt-n2" id="emi">{card.email}</p>
-                                                    <hr id="hori"></hr>
-                                                    <Link id="Link" to={"/3"}>
-                                                        <div className="d-flex justify-content-center text-center ml-3 mt-n2"><span> <img alt="image" className="mt-1" id="AVT" src={"https://panorbit.in/wp-content/uploads/2019/hotlink-ok/1003.jpeg"} width="30px" height="30px"></img></span>   <span id="Profile_txt" class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clementine Bauch</span></div></Link>
-                                                    <hr id="hori"></hr>
-                                                    <Link id="Link" to={"/9"}>
-                                                        <div className="d-flex justify-content-center text-center ml-3 mt-n2"><span> <img alt="image" className="mt-1" id="AVT" src={"https://panorbit.in/wp-content/uploads/2019/hotlink-ok/1009.jpeg"} width="30px" height="30px"></img></span>   <span id="Profile_txt" class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Glenna Reichert</span></div>
-                                                    </Link>
+                                                    <hr id="hori"></hr>{console.log("id",)}
+                                                    {items1.slice(userid,Number(userid)+2).map(item1 =>
+                     ( <Link id="Link" to={`/${item1.id}`}>
+                                                        <div className="d-flex justify-content-center text-center ml-3 mt-n2"><span> <img alt="image" className="mt-1" id="AVT" src={item1.profilepicture} width="30px" height="30px"></img></span>   <span id="Profile_txt" class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{item1.name}</span></div><hr id="hori"></hr>
+                                                    </Link>  ))}
+                                                       
+                                                        
+                                                    
+                                                    
+                                                    
                                                     <Link id="Link" to={"/"}><button type="button" class="btn btn-danger mt-2">Sign Out</button></Link>
                                                 </div>
 
@@ -240,14 +147,14 @@ const Profile = () => {
                                                 </div>
                                                 <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                     <div className="justify-content-center text-center ml-5">
-                                                        <img src={"https://lh3.googleusercontent.com/proxy/oCUWEUBq5cpwV94YlXVvqHLQ2Ox_bnOWyqUrEyBZEzB2BMFvdVhIc-5Q8OBARImMbNEIHjmJWd_l7kWmQi4q6B8404ICBwxPg5PF1oOrecHvzZnfleteFl-phN11a6Q"} width="650px" height="400px" alt="Coming soon"></img>
+                                                        <img src={"https://images-na.ssl-images-amazon.com/images/I/61uMvoCHNDL._SL1000_.jpg"} width="650px" height="400px" alt="Coming soon"></img>
 
                                                     </div>
 
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                     <div className="justify-content-center text-center ml-5">
-                                                        <img src={"https://lh3.googleusercontent.com/proxy/oCUWEUBq5cpwV94YlXVvqHLQ2Ox_bnOWyqUrEyBZEzB2BMFvdVhIc-5Q8OBARImMbNEIHjmJWd_l7kWmQi4q6B8404ICBwxPg5PF1oOrecHvzZnfleteFl-phN11a6Q"} width="650px" height="400px" alt="Coming soon"></img>
+                                                        <img src={"https://images-na.ssl-images-amazon.com/images/I/61uMvoCHNDL._SL1000_.jpg"} width="650px" height="400px" alt="Coming soon"></img>
 
 
                                                     </div>
@@ -256,7 +163,7 @@ const Profile = () => {
 
 
                                                     <div className="justify-content-center text-center ml-5">
-                                                        <img src={"https://lh3.googleusercontent.com/proxy/oCUWEUBq5cpwV94YlXVvqHLQ2Ox_bnOWyqUrEyBZEzB2BMFvdVhIc-5Q8OBARImMbNEIHjmJWd_l7kWmQi4q6B8404ICBwxPg5PF1oOrecHvzZnfleteFl-phN11a6Q"} width="650px" height="400px" alt="Coming soon"></img>
+                                                        <img src={"https://images-na.ssl-images-amazon.com/images/I/61uMvoCHNDL._SL1000_.jpg"} width="650px" height="400px" alt="Coming soon"></img>
 
                                                     </div>
                                                 </div>
@@ -277,67 +184,8 @@ const Profile = () => {
                     <div>
                     
 
-                    <div id="body">
-
-                       
-
-                        <div class="chat-box">
-                            <div class="chat-box-header">
-                            <img src={'https://panorbit.in/wp-content/uploads/2019/hotlink-ok/1001.jpeg'} width="30px" height="30px" style={{borderRadius:"15px"}}></img><span className="ml-1">Leanne Graham</span>
-      <span class="chat-box-toggle"><i class="fas fa-times material-icons"></i></span> 
-                            </div>
-                            <div class="chat-box-body">
-                                <div class="chat-box-overlay">
-                                </div>
-                                <div class="chat-logs">
-
-                                </div>
-                            </div>
-                            <div class="chat-input">
-                                <form>
-                                    <input type="text" id="chat-input" placeholder="Send a message..." />
-                                    <button type="submit" class="chat-submit" id="chat-submit"><i class="fas fa-paper-plane material-icons"></i></button>
-                                </form>
-                            </div>
-                        </div>
-</div>
-
-
-
-                    </div>
-
-                    <div>
-                        <div class="l_c_h">
-                            <div class="c_h">
-                                <div class="left_c">
-
-                                    <div class="left center_icons">
-                                        <i class="far fa-comment-alt ml-3"></i> <span className="ml-1">Chat</span>
-                                    </div>
-
-                                </div>
-                                <div class="right right_c" style={{ width: "35px" }}>
-                                    <a href="#" class="logout" title="End chat" name="" style={{ display: "none" }}></a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="chat_container" style={{ display: "none" }}>
-
-                                <ul class="list-group list-group-flush">
-                                    {items.map(item =>
-                                    (
-                                        <li  class="list-group-item"> <Link id="Link" to={`/${item.id}`}> <img id="image" src={item.profilepicture} width="25px" height="25" alt="image"></img><span id="naaa" className="ml-3">{item.name}</span></Link> </li>
-                                    ))}
-
-                                </ul>
-
-                                <div class="chat_text_area" style={{ display: "none" }}>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
+                  <Tog ></Tog>
+                  </div>
 
 
             </>
